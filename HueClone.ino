@@ -5,8 +5,8 @@
 #include <PubSubClient.h>
 #include <Adafruit_NeoPixel.h>
 
-#define PIN 4
-Adafruit_NeoPixel strip = Adafruit_NeoPixel(4, PIN, NEO_GRB + NEO_KHZ800); // number 4 stants for the number of LEDs in your led strip. E.g. ff your have 5 meter, 60LED/M strip, it contains 300 LED
+#define PIN 4 // your ESP8266 GPIO PIN number
+Adafruit_NeoPixel strip = Adafruit_NeoPixel(4, PIN, NEO_GRB + NEO_KHZ800); // number 4 stands for the number of LEDs in your led strip. E.g. if you've a 5 meter, 60LED/M strip, it contains 300 LED
 
 const char* ssid = "....";
 const char* password = "...";
