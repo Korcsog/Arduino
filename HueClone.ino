@@ -10,7 +10,7 @@ Adafruit_NeoPixel strip = Adafruit_NeoPixel(4, PIN, NEO_GRB + NEO_KHZ800); // nu
 
 const char* ssid = "....";
 const char* password = "...";
-const char* host = "officelight"; // the name of your fixture, and the base channel to listen to
+const char* host = "hueclone"; // the name of your fixture, and the base channel to listen to
 IPAddress MQTTserver(192, 168, 1, 99);  //your MQTT servers's IP address (e.g. your Raspberry Pi)
 
 /* NO NEED TO CHANGE BENEATH THIS LINE */
