@@ -16,7 +16,7 @@ PubSubClient client(wclient, MQTTserver);
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 
 
-const int UPDATE_INTERVAL_SECS = 30; // Update every xx second
+const int UPDATE_INTERVAL_SECS = 9; // Update every 9 second...modify your tasta
 
 
 // Initialize the temperature/ humidity sensor
@@ -56,6 +56,7 @@ void HomeKit(){
         Serial.println("publishing " +  String(dht.readHumidity()) + "%");
         client.publish("RoomHumidity",String(dht.readHumidity()));   
         client.loop();
+        delay(6000); // reading every 6 sec
     }
       
   } 
