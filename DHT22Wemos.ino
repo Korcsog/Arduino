@@ -12,11 +12,11 @@ IPAddress MQTTserver(192, 168, 1, 92);
 WiFiClient wclient;
 PubSubClient client(wclient, MQTTserver);
 
-#define DHTPIN D1 // Wemos D1 Mini....DHT PIN 2 (data)
+#define DHTPIN D1 // Wemos D1 Mini's D1 pin ....DHT PIN 2 (data)
 #define DHTTYPE DHT22   // DHT 22  (AM2302), AM2321
 
 
-const int UPDATE_INTERVAL_SECS = 9; // Update every 9 second...modify your tasta
+const int UPDATE_INTERVAL_SECS = 9; // Update every 9 second...modify if you want :-)
 
 
 // Initialize the temperature/ humidity sensor
