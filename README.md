@@ -1,4 +1,4 @@
 # Arduino
-Arduino sketckes for MQTT
 
-These files uses the PubSubClient library in Arduino IDE! Make sure, you downloaded this!
+
+Arduino sketckes for ESP8266 with MQTT and Apple HomeKit support!
