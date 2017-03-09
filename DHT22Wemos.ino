@@ -4,8 +4,8 @@
 #include <PubSubClient.h>
 
 
-const char* WIFI_SSID = "MyHome"; 
-const char* WIFI_PWD = "korcsogek";
+const char* WIFI_SSID = "xxxxxxxxx"; // wifi ssid
+const char* WIFI_PWD = "xxxxxxxx";  // wifi password
 
 
 IPAddress MQTTserver(192, 168, 1, 92);
@@ -21,8 +21,10 @@ const int UPDATE_INTERVAL_SECS = 9; // Update every 9 second...modify if you wan
 
 // Initialize the temperature/ humidity sensor
 DHT dht(DHTPIN, DHTTYPE);
-float humidity = 0.;
-float temperature = 0.;
+
+float oldH ;
+float oldT ;
+
 
 void setup() {
   // Setup console
@@ -45,18 +47,38 @@ void HomeKit(){
     if (WiFi.status() == WL_CONNECTED) {
     if (!client.connected()) {
       if (client.connect("ESP8266: DHT Sensor")) {
-        client.publish("HomeKit","Temperature Sensor Online!");
-        client.publish("HomeKit","Humidity Sensor Online!");
+        client.publish("HomeKit","Temperature and Humidity Sensor Online!");
       }
     }
 
-    if (client.connected()){
+    if (client.connected())
+      
+  
+    {
+
+     float h = dht.readHumidity();
+     float t = dht.readTemperature();
+
+  if (isnan(h) || isnan(t) ){
+    Serial.println("Failed to read from DHT sensor!");
+    return;
+  }
+
+ 
+  if (t != oldT || h != oldH )
+  {
+
+    oldT = t;
+    oldH = h;
+  }
+      
+      
+      
       Serial.println("publishing " +  String(dht.readTemperature()) + "°");
-        client.publish("RoomTemperature",String(dht.readTemperature()));   
-        Serial.println("publishing " +  String(dht.readHumidity()) + "%");
-        client.publish("RoomHumidity",String(dht.readHumidity()));   
+        client.publish("RoomTemperature",String(dht.readTemperature()));   // RoomTemperature = temp topic
+        Serial.println("publishing " +  String(dht.readHumidity()) + "%"); 
+        client.publish("RoomHumidity",String(dht.readHumidity()));   // RoomHumidity = humidity topic
         client.loop();
-        delay(6000); // reading every 6 sec
     }
       
   } 
@@ -65,5 +87,5 @@ void HomeKit(){
 void loop() {
  HomeKit();
  Serial.println("Sending completed");
- delay(UPDATE_INTERVAL_SECS * 1000);
+ delay(5000);  // publish delay
 }
