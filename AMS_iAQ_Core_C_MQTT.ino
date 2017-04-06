@@ -7,14 +7,14 @@
 
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
-#include "brzo_i2c.h"
+#include "brzo_i2c.h"  // just google it!
 
 IPAddress MQTTserver(192, 168, 1, 40); // MQTT server IP address
 WiFiClient wclient;
 PubSubClient client(wclient, MQTTserver);
 
-const char* ssid = "MyHome"; // Your ssid
-const char* pass = "korcsogek"; // Your Password
+const char* ssid = "ssid"; // Your ssid
+const char* pass = "password"; // Your Password
 const char* clientName = "ESP8266-AirQualitySensor1"; // must be unique
 
 uint8_t SCL_PIN = D1; // wemos SCL PIN
@@ -87,9 +87,9 @@ void HomeKit(){
     {
    
       Serial.println("Publishing CO2: " +  String(co2));
-        client.publish("airquality1/co2",String(co2));   
+        client.publish("airquality1/co2",String(co2));   // publishing to airquality1/co2 topic
         Serial.println("Publishing VOC: " +  String(tvoc));
-        client.publish("airquality1/voc",String(tvoc));   
+        client.publish("airquality1/voc",String(tvoc));  // publishing to airquality1/voc topic
         client.loop();
       
     }
@@ -102,7 +102,7 @@ void loop()
   readAllBytes();
   HomeKit();
   Serial.println("Sending completed");
-  delay(4000);
+  delay(4000);  // read the sensor and publish the data every 4 sec
 
 }
 
