@@ -1,9 +1,5 @@
 //AMS iAQ Core C
 // http://ams.com/eng/Products/Environmental-Sensors/Air-Quality-Sensors/iAQ-core-C
-// https://forum.arduino.cc/index.php?topic=350712.0
-// https://www.allaboutcircuits.com/projects/build-an-arduino-ble-enabled-air-quality-monitor/
-// http://www.esp8266.com/viewtopic.php?f=32&t=12155
-// https://github.com/NationalAssociationOfRealtors/IndoorAirQualitySensor/blob/dev/firmware/SensorBoard/SensorBoard.ino
 
 #include <ESP8266WiFi.h>
 #include <PubSubClient.h>
